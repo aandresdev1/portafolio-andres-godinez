@@ -43,6 +43,7 @@
   function showForm() { form.hidden = false; sent.hidden = true; err.hidden = true; }
 
   document.querySelectorAll('[data-open]').forEach(function (b) { b.addEventListener('click', open); });
+  if (location.hash === '#hablemos') { history.replaceState(null, '', location.pathname); setTimeout(open, 300); }
   document.getElementById('close').addEventListener('click', close);
   document.getElementById('sent-close').addEventListener('click', close);
   document.getElementById('sent-reset').addEventListener('click', function () { form.reset(); selectType(0); showForm(); });
@@ -67,7 +68,7 @@
       err.hidden = true; void err.offsetWidth; err.hidden = false;
       return;
     }
-    var body = 'Hola Andrés,\n\n' + msg + '\n\nNombre: ' + name + '\nCorreo: ' + email + (company ? '\nEmpresa: ' + company : '') + '\nNecesito: ' + TYPES[type];
+    var body = 'Hola Andres,\n\n' + msg + '\n\nNombre: ' + name + '\nCorreo: ' + email + (company ? '\nEmpresa: ' + company : '') + '\nNecesito: ' + TYPES[type];
     var href = 'mailto:hello@aandresdev.com?subject=' + encodeURIComponent('Proyecto: ' + TYPES[type]) + '&body=' + encodeURIComponent(body);
     window.location.href = href;
     document.getElementById('sent-name').textContent = name;
