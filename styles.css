@@ -39,6 +39,9 @@ button { font: inherit; color: inherit; }
 .photo { display: block; width: 120px; height: 120px; border-radius: 30px; object-fit: cover; object-position: center 22%; border: 1px solid var(--border); transform: rotate(-3deg); }
 .hero h1 { margin: 32px 0 0; font-size: clamp(40px, 7vw, 60px); line-height: 1.02; letter-spacing: -0.045em; font-weight: 700; }
 .lead { margin: 18px 0 0; font-size: 20px; line-height: 1.5; color: var(--muted); max-width: 540px; }
+.lead-sub { margin-top: 10px; font-size: 17px; }
+.lead-link { color: var(--fg); font-weight: 600; text-decoration: underline; text-decoration-thickness: 1.5px; text-underline-offset: 4px; text-decoration-color: color-mix(in srgb, currentColor 35%, transparent); transition: text-decoration-color .2s; }
+.lead-link:hover { text-decoration-color: currentColor; }
 .actions { margin-top: 32px; display: flex; flex-wrap: wrap; gap: 12px; }
 .meta { margin: 28px 0 0; font-size: 14px; color: var(--muted); }
 
