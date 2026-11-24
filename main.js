@@ -30,7 +30,7 @@
   var err = document.getElementById('err');
   var lastFocus = null;
   var closeTimer = null;
-  var TYPES = ['Web o landing', 'App móvil', 'Automatización con IA', 'Producto SaaS', 'Otro'];
+  var TYPES = ['Crear un proyecto', 'Colaboración de contenido', 'Automatizar mi empresa'];
   var type = 0;
 
   function open() {
