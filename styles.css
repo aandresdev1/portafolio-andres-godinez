@@ -336,3 +336,4 @@ textarea.field { height: auto; padding: 14px 16px; line-height: 1.5; resize: ver
 .res-price { color: var(--fg); }
 .buy-bundle { margin: 0 0 16px; font-size: 14px; color: var(--muted); }
 .buy-bundle .link { color: var(--fg); text-decoration: underline; text-underline-offset: 3px; }
+.buy-note strong { color: var(--fg); }
