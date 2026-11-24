@@ -1,3 +1,15 @@
 {
-  "cleanUrls": true
+  "cleanUrls": true,
+  "redirects": [
+    {
+      "source": "/proyectos/buqia-web",
+      "destination": "/proyectos/buqia",
+      "permanent": true
+    },
+    {
+      "source": "/proyectos/buqia-app",
+      "destination": "/proyectos/buqia",
+      "permanent": true
+    }
+  ]
 }
