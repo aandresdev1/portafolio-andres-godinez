@@ -302,3 +302,15 @@ textarea.field { height: auto; padding: 14px 16px; line-height: 1.5; resize: ver
 .section .res-list { border-top: 0; margin-top: 8px; }
 .section .res:last-child { border-bottom: 0; }
 .section + .contact { margin-top: 48px; }
+
+/* Proyectos: filtros y botón */
+.all-btn { margin-top: 24px; }
+.ftabs { display: flex; flex-wrap: wrap; gap: 4px 22px; margin-top: 32px; }
+.ftab { font: inherit; font-size: 15px; font-weight: 500; color: var(--muted); background: none; border: 0; padding: 6px 0; cursor: pointer; position: relative; transition: color .2s; }
+.ftab sup { font-size: 10px; margin-left: 3px; opacity: .7; }
+.ftab::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 1.5px; background: currentColor; transform: scaleX(0); transform-origin: left; transition: transform .3s cubic-bezier(.2,.8,.2,1); }
+.ftab:hover, .ftab.is-on { color: var(--fg); }
+.ftab.is-on::after { transform: scaleX(1); }
+.pj .ftabs + .res-list { margin-top: 20px; }
+.res[hidden] { display: none; }
+.fempty { margin-top: 24px; color: var(--muted); }
