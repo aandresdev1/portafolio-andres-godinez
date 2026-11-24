@@ -296,3 +296,6 @@ textarea.field { height: auto; padding: 14px 16px; line-height: 1.5; resize: ver
 @media (max-width: 520px) { .res { grid-template-columns: 64px 1fr; column-gap: 14px; } .res-thumb { width: 64px; height: 64px; border-radius: 14px; } .res-thumb svg { width: 26px; height: 26px; } }
 .res-thumb { overflow: hidden; background: #111; }
 .res-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+.res-thumb.res-thumb-logo { background: #fff; padding: 16px; box-shadow: inset 0 0 0 1px rgba(0,0,0,.06); }
+.res-thumb.res-thumb-logo img { object-fit: contain; }
