@@ -243,6 +243,7 @@ textarea.field { height: auto; padding: 14px 16px; line-height: 1.5; resize: ver
 /* Recursos */
 .res-section { margin-top: 56px; }
 .res-intro { margin: 12px 0 0; color: var(--muted); font-size: 16px; }
+.pj .res-list { margin-top: 40px; }
 .res-list { margin-top: 20px; border-top: 1px solid var(--border); }
 .res { position: relative; display: grid; gap: 6px; padding: 22px 40px 22px 0; border-bottom: 1px solid var(--border); }
 .res-meta { font-size: 12px; font-weight: 600; letter-spacing: .04em; text-transform: uppercase; color: var(--muted); }
