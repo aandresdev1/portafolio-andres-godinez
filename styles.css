@@ -48,6 +48,7 @@ button { font: inherit; color: inherit; }
 .btn:active { transform: translateY(0) scale(.97); }
 .btn-primary { background: var(--fg); color: var(--bg); box-shadow: var(--shadow); padding-right: 18px; }
 .btn-ghost { background: var(--card); border-color: var(--border); }
+.btn-sm { height: 40px; padding: 0 14px 0 16px; font-size: 14px; gap: 10px; }
 .btn-block { width: 100%; height: 54px; font-weight: 600; }
 .btn .ar { transition: transform .25s ease; }
 .btn:hover .ar { transform: translateX(4px); }
@@ -81,8 +82,8 @@ button { font: inherit; color: inherit; }
 .about { padding: 48px 0 24px; }
 .about p { margin: 16px 0 0; font-size: 17px; line-height: 1.7; }
 .about .label + p { margin-top: 20px; }
-.contact { margin-top: 24px; padding: 28px 0; border-top: 1px solid var(--border); display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 20px; }
-.contact h2 { margin: 0; font-size: 26px; letter-spacing: -0.03em; }
+.contact { margin-top: 16px; padding: 18px 0; border-top: 1px solid var(--border); display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 20px; }
+.contact h2 { margin: 0; font-size: 18px; font-weight: 600; letter-spacing: -0.02em; }
 .contact p { margin: 6px 0 0; font-size: 15px; }
 .footer { padding: 20px 0 28px; border-top: 1px solid var(--border); display: flex; flex-wrap: wrap; justify-content: space-between; gap: 16px; font-size: 13px; color: var(--muted); }
 .footer-links { display: flex; flex-wrap: wrap; gap: 20px; }
@@ -178,6 +179,7 @@ textarea.field { height: auto; padding: 14px 16px; line-height: 1.5; resize: ver
 @media (max-width: 640px) { .pj-meta { grid-template-columns: 1fr; } .pj-cover { height: 220px; } }
 
 @media (max-width: 640px) {
+  .contact { gap: 14px; }
   .grid { grid-template-columns: 1fr; grid-auto-rows: 320px; }
   .m-inner { padding: 20px 20px 40px; }
   .m-card { padding: 22px; }
