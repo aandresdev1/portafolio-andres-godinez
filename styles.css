@@ -185,3 +185,24 @@ textarea.field { height: auto; padding: 14px 16px; line-height: 1.5; resize: ver
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; scroll-behavior: auto !important; }
 }
+
+/* Menú responsive */
+.nav { position: relative; }
+.nav-links { display: flex; align-items: center; gap: 24px; }
+.burger { display: none; width: 40px; height: 40px; border-radius: 10px; background: var(--card); border: 1px solid var(--border); cursor: pointer; flex-direction: column; align-items: center; justify-content: center; gap: 4px; }
+.burger span { display: block; width: 16px; height: 1.6px; border-radius: 2px; background: currentColor; transition: transform .35s cubic-bezier(.2,.8,.2,1), opacity .2s; }
+.burger[aria-expanded="true"] span:nth-child(1) { transform: translateY(5.6px) rotate(45deg); }
+.burger[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+.burger[aria-expanded="true"] span:nth-child(3) { transform: translateY(-5.6px) rotate(-45deg); }
+@media (max-width: 640px) {
+  .burger { display: flex; }
+  .nav nav { gap: 10px; }
+  .nav-links { position: absolute; z-index: 50; top: calc(100% - 12px); left: 0; right: 0; flex-direction: column; align-items: stretch; gap: 0; padding: 8px; border-radius: 18px; background: var(--card); border: 1px solid var(--border); box-shadow: 0 24px 50px rgba(0,0,0,.35); opacity: 0; visibility: hidden; transform: translateY(-8px) scale(.98); transform-origin: top right; transition: opacity .25s ease, transform .35s cubic-bezier(.2,.8,.2,1), visibility 0s .35s; }
+  .nav-links.open { opacity: 1; visibility: visible; transform: none; transition: opacity .25s ease, transform .35s cubic-bezier(.2,.8,.2,1), visibility 0s; }
+  .nav-links .link { opacity: 1 !important; font-size: 17px; font-weight: 500; text-align: left; padding: 14px 14px; border-radius: 12px; }
+  .nav-links .link::after { display: none; }
+  .nav-links .link:hover { background: var(--bg); }
+  .nav-links.open .link { animation: fadeUp .45s cubic-bezier(.2,.8,.2,1) both; }
+  .nav-links.open .link:nth-child(2) { animation-delay: 50ms; }
+  .nav-links.open .link:nth-child(3) { animation-delay: 100ms; }
+}

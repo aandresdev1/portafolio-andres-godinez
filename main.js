@@ -10,6 +10,19 @@
     this.querySelectorAll('svg').forEach(function (s) { s.style.animation = 'none'; void s.offsetWidth; s.style.animation = ''; });
   });
 
+  // Menú responsive
+  var burger = document.getElementById('burger');
+  var links = document.getElementById('nav-links');
+  function setMenu(open) {
+    links.classList.toggle('open', open);
+    burger.setAttribute('aria-expanded', open ? 'true' : 'false');
+    burger.setAttribute('aria-label', open ? 'Cerrar menú' : 'Abrir menú');
+  }
+  burger.addEventListener('click', function (e) { e.stopPropagation(); setMenu(!links.classList.contains('open')); });
+  links.querySelectorAll('a, button').forEach(function (el) { el.addEventListener('click', function () { setMenu(false); }); });
+  document.addEventListener('click', function (e) { if (!links.contains(e.target)) setMenu(false); });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') setMenu(false); });
+
   // Popup de contacto
   var modal = document.getElementById('modal');
   var form = document.getElementById('form');
