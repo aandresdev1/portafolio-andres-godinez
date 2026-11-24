@@ -1,0 +1,251 @@
+<!doctype html>
+<html lang="es" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bot de Telegram para registrar gastos de Yape en Sheets — Andres Godínez</title>
+<meta name="description" content="Mandas la captura al bot, Gemini extrae monto y fecha, y queda registrada en tu Sheets con backup en Drive.">
+<meta property="og:title" content="Bot de Telegram para registrar gastos de Yape en Sheets — Andres Godínez">
+<meta property="og:description" content="Mandas la captura al bot, Gemini extrae monto y fecha, y queda registrada en tu Sheets con backup en Drive.">
+<meta property="og:image" content="/assets/andres.jpg">
+<meta name="theme-color" content="#0A0A0A">
+<link rel="icon" type="image/png" sizes="64x64" href="/assets/favicon.png">
+<link rel="icon" type="image/png" sizes="512x512" href="/assets/icon-512.png">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+<script>
+  try { var t = localStorage.getItem('theme'); if (t) document.documentElement.dataset.theme = t; } catch (e) {}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Sora:wght@700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+<div class="col">
+  <header class="nav a-down">
+    <a href="/" class="brand">Andres Godínez</a>
+    <nav aria-label="Principal">
+      <div class="nav-links" id="nav-links">
+      <a href="/#sobre-mi" class="link">Sobre mí</a>
+      <a href="/#proyectos" class="link">Proyectos</a>
+      <a href="/recursos" class="link">Recursos</a>
+      <button type="button" class="link link-btn" data-open>Contacto</button>
+        <div class="nav-social"><a href="https://www.instagram.com/aandresdev/" target="_blank" rel="noopener" aria-label="Instagram"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><path d="M17.5 6.5h.01"/></svg></a><a href="https://www.linkedin.com/in/andresgodinezv/" target="_blank" rel="noopener" aria-label="LinkedIn"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M8 10v7M8 7v.01M12 17v-7M12 13.5a2.5 2.5 0 0 1 5 0V17"/></svg></a><a href="https://www.tiktok.com/@aandresdev" target="_blank" rel="noopener" aria-label="TikTok"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3c.4 2.4 2 4 4.5 4.3v3c-1.7 0-3.2-.5-4.5-1.4V15a5.5 5.5 0 1 1-5.5-5.5v3A2.5 2.5 0 1 0 11 15V3z"/></svg></a></div>
+      </div>
+      <button type="button" class="toggle" id="toggle" aria-label="Cambiar tema">
+        <svg class="i-sun" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+        <svg class="i-moon" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/></svg>
+      </button>
+      <button type="button" class="burger" id="burger" aria-label="Abrir menú" aria-expanded="false" aria-controls="nav-links"><span></span><span></span><span></span></button>
+    </nav>
+  </header>
+
+  <main class="pj rs">
+    <a href="/recursos" class="back link a-up" style="--d:0ms"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M11 6l-6 6 6 6"/></svg> Recursos</a>
+    <span class="label a-up" style="--d:100ms">Plantilla · 19 ago. 2026 · <a class="link" href="https://www.tiktok.com/@aandresdev" target="_blank" rel="noopener">Ver en TikTok</a></span>
+    <h1 class="a-up" style="--d:180ms">Bot de Telegram para registrar gastos de Yape en Sheets</h1>
+    <p class="lead a-up" style="--d:260ms">Mandas la captura al bot, Gemini extrae monto y fecha, y queda registrada en tu Sheets con backup en Drive.</p>
+    <section class="gate a-up" id="gate" data-slug="tracker-gastos-yape-telegram" hidden style="--d:340ms">
+      <div class="gate-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="1.5"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg></div>
+      <p class="gate-eyebrow">Contenido exclusivo</p>
+      <h2 class="gate-title">Suscríbete para ver este recurso</h2>
+      <p class="gate-text">Déjame tu correo y te desbloqueo el material completo. También te llegan los recursos nuevos.</p>
+      <form class="gate-form" id="gate-form" novalidate>
+        <input type="email" id="gate-email" class="gate-input" placeholder="tu@correo.com" autocomplete="email" required>
+        <button type="submit" class="btn btn-primary">Suscribirme</button>
+      </form>
+      <p class="gate-err" id="gate-err" hidden></p>
+      <p class="gate-fine">Sin spam. Cancela cuando quieras.</p>
+    </section>
+    <article class="rs-md a-up" id="rs-content" style="--d:340ms" hidden>
+<p>Anotar los gastos a mano es de esas cosas que todos sabemos que hay que hacer y casi nadie sostiene más de dos semanas. Esta plantilla se salta el paso: mandas la captura del Yape al bot de Telegram, el bot lee el monto y la fecha con IA, y la fila cae sola en tu Google Sheets. El screenshot original queda guardado en Drive por si necesitas auditar después.</p>
+<p>Configurarlo la primera vez toma unos 30 minutos. Después son cinco segundos por gasto: captura, enviar, escribir en qué gastaste.</p>
+<p><strong>Lo que necesitas:</strong> una cuenta de n8n (self-hosted o Cloud), una cuenta de Google (Sheets + Drive), acceso a la API de Google Gemini, y un bot de Telegram con su token.</p>
+<h2>1. Cómo funciona el flujo</h2>
+<p>El bot maneja tres caminos distintos según cómo mandes el pago:</p>
+<ul>
+<li><strong>Foto + caption en el mismo mensaje</strong> → camino feliz. Gemini extrae los datos, sube el screenshot a Drive, y guarda la fila en Sheets con el caption como descripción.</li>
+<li><strong>Foto sin caption</strong> → guarda los datos como <em>pendiente</em> asociado a tu chat y te pide por Telegram que envíes la descripción en otro mensaje.</li>
+<li><strong>Texto suelto</strong> → un clasificador con Gemini decide si estás mandando la descripción de un pendiente o si es conversación normal. Si es descripción, cierra el pendiente y guarda la fila. Si no, responde un agente conversacional con memoria por chat.</li>
+</ul>
+<p>Antes de todo eso, el bot valida que tu número esté en una hoja de participantes autorizados. Sin eso, no procesa nada. Es lo que permite tenerlo abierto sin miedo a que un extraño registre gastos en tu Sheets.</p>
+<blockquote>
+<p>El clasificador está en Gemini flash-lite con temperatura 0 y máximo 8 tokens. Es lo suficientemente barato para no notarlo en la cuenta y suficientemente rápido para que no sientas latencia.</p>
+</blockquote>
+<h2>2. Prepara el Google Sheets</h2>
+<p>Crea un Sheets con dos pestañas. Los nombres importan porque el workflow los busca por nombre exacto.</p>
+<p><strong>Pestaña <code>Hoja 1</code></strong> (donde se guardan las compras). Estas columnas, en este orden:</p>
+<table>
+<thead>
+<tr>
+<th>Columna</th>
+<th>Qué guarda</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Monto</td>
+<td>El número que extrae Gemini del Yape</td>
+</tr>
+<tr>
+<td>Fecha</td>
+<td>La fecha del Yape (no la del registro)</td>
+</tr>
+<tr>
+<td>Hora</td>
+<td>La hora del Yape</td>
+</tr>
+<tr>
+<td>Descripción</td>
+<td>Lo que tú escribiste (caption o mensaje aparte)</td>
+</tr>
+<tr>
+<td>Descripción del yape</td>
+<td>El texto que puso el que recibió el pago</td>
+</tr>
+<tr>
+<td>Link del screenshot</td>
+<td>URL del backup en Drive</td>
+</tr>
+<tr>
+<td>Registrado por</td>
+<td>Tu nombre según la hoja de participantes</td>
+</tr>
+<tr>
+<td>Fecha de registro</td>
+<td>Timestamp de cuándo se guardó la fila</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Pestaña <code>Participantes / Numeros</code></strong>. Dos columnas mínimo: <code>Codigo</code> (el <code>chat.id</code> de Telegram) y <code>Nombre</code>. Cualquier persona cuyo <code>chat.id</code> esté ahí puede registrar gastos; el resto queda fuera.</p>
+<p>Para saber tu <code>chat.id</code>, escríbele a <a href="https://t.me/userinfobot" target="_blank" rel="noopener">@userinfobot</a> en Telegram y te lo devuelve.</p>
+<h2>3. Crea el bot de Telegram</h2>
+<p>Habla con <a href="https://t.me/BotFather" target="_blank" rel="noopener">@BotFather</a>, envía <code>/newbot</code> y sigue las dos preguntas. Al final te da un token con formato <code>123456789:ABC…</code>. Guárdalo, es la credencial que n8n va a usar para leer y responder mensajes.</p>
+<p>Después ve al chat con tu bot y envíale cualquier cosa. Sin eso, Telegram no le va a entregar tus mensajes al webhook.</p>
+<h2>4. Importa el workflow en n8n</h2>
+<p>Descarga el JSON de la plantilla desde acá: <strong><a href="https://drive.google.com/file/d/13Vyj_IzMWtCh0rskVlb7zL8ZLRUsZwYX/view?usp=sharing" target="_blank" rel="noopener">Tracker Gastos.json en Google Drive</a></strong>.</p>
+<p>En n8n: menú <code>···</code> de la vista de workflows → <strong>Import from File</strong> → seleccionas el JSON. Aparece el flujo completo con los nodos ya conectados.</p>
+<p>Antes de activarlo, tienes que rellenar cuatro credenciales:</p>
+<ul>
+<li><strong>Telegram Trigger + nodos Telegram</strong>: pega el token de BotFather.</li>
+<li><strong>Google Sheets</strong>: OAuth con la cuenta dueña del Sheets. En cada nodo de Sheets, cambia el <code>documentId</code> al de <em>tu</em> hoja (está en la URL, entre <code>/d/</code> y <code>/edit</code>).</li>
+<li><strong>Google Drive</strong>: la misma cuenta OAuth. En el nodo <em>Drive - Subir screenshot</em>, cambia la carpeta destino a una tuya llamada <strong>Screenshots</strong> (o el nombre que uses).</li>
+<li><strong>Google Gemini</strong> (en los tres nodos que lo usan: Vision, clasificador, agente): tu API key de <a href="https://aistudio.google.com/apikey" target="_blank" rel="noopener">Google AI Studio</a>.</li>
+</ul>
+<p>Los nombres de las pestañas (<code>Hoja 1</code> y <code>Participantes / Numeros</code>) el workflow los busca por nombre, así que si vas a cambiarlos, cámbialos también en los tres nodos de Sheets.</p>
+<h2>5. Activar y probar</h2>
+<p>Prende el toggle de <strong>Active</strong> en la esquina superior derecha del workflow. Desde ese momento, Telegram le va a mandar cada mensaje nuevo del bot.</p>
+<p>Manda una captura de Yape al bot con un caption tipo "almuerzo" y verifica:</p>
+<ol>
+<li>Te responde con "procesando comprobante…"</li>
+<li>Te confirma que quedó guardado</li>
+<li>La fila aparece en tu Sheets</li>
+<li>El screenshot está en tu carpeta de Drive</li>
+</ol>
+<p>Si algo falla, abre el workflow en n8n y mira el panel de <strong>Executions</strong> — cada mensaje deja una traza con los datos de cada nodo. Es donde vas a diagnosticar el 90% de los problemas.</p>
+<h3>Errores comunes</h3>
+<ul>
+<li><strong>Cambiar el nombre de las pestañas sin actualizar los nodos de Sheets.</strong> El workflow no encuentra dónde escribir y se cae en silencio.</li>
+<li><strong>Olvidarse de agregar tu <code>chat.id</code> en Participantes.</strong> El bot recibe tu mensaje, no te encuentra en la hoja, y no hace nada. Tampoco te avisa.</li>
+<li><strong>Poner el token de Telegram en un nodo pero no en los otros.</strong> Cada nodo de Telegram tiene su credencial; asegúrate de que apunten a la misma.</li>
+<li><strong>Mandar la foto sin caption y después no responder al bot.</strong> Se queda un pendiente colgado en el static data. Manda cualquier descripción para cerrarlo.</li>
+<li><strong>Cuota de Gemini gratuita agotada.</strong> Si registras muchos gastos en un día, revisa los límites en AI Studio. Para uso personal, flash-lite alcanza sobrado.</li>
+</ul>
+<p>Cuando lo tienes andando, cambia la relación con anotar gastos: pasas de "tengo que sentarme a poner las cosas del mes" a que la hoja ya esté al día siempre. Y lo importante — el análisis, ver en qué se te va la plata — recién ahí empieza a valer la pena.</p>
+      <h2>Qué incluye</h2>
+      <ul><li>Plantilla JSON del workflow lista para importar en n8n</li><li>La estructura exacta de la hoja de Google Sheets</li><li>Qué credenciales necesitas y cómo se conectan</li></ul>
+    </article>
+  </main>
+
+  <footer class="footer reveal">
+    <span>© 2026 Andres Godínez</span>
+    <span class="footer-links"><a href="mailto:hello@aandresdev.com" class="link">hello@aandresdev.com</a><a href="https://www.linkedin.com/in/andresgodinezv/" target="_blank" rel="noopener" class="link soc" aria-label="LinkedIn"><svg class="fi" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M8 10v7M8 7v.01M12 17v-7M12 13.5a2.5 2.5 0 0 1 5 0V17"/></svg><span class="ft">LinkedIn</span></a><a href="https://www.instagram.com/aandresdev/" target="_blank" rel="noopener" class="link soc" aria-label="Instagram"><svg class="fi" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><path d="M17.5 6.5h.01"/></svg><span class="ft">Instagram</span></a><a href="https://www.tiktok.com/@aandresdev" target="_blank" rel="noopener" class="link soc" aria-label="TikTok"><svg class="fi" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3c.4 2.4 2 4 4.5 4.3v3c-1.7 0-3.2-.5-4.5-1.4V15a5.5 5.5 0 1 1-5.5-5.5v3A2.5 2.5 0 1 0 11 15V3z"/></svg><span class="ft">TikTok</span></a></span>
+  </footer>
+</div>
+
+<!-- Popup de contacto -->
+<div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="m-title" hidden>
+  <div class="m-panel">
+    <div class="m-inner">
+      <div class="m-top">
+        <span class="m-item brand" style="--d:0ms">Andres Godínez</span>
+        <button type="button" class="m-item x" id="close" aria-label="Cerrar formulario" style="--d:60ms"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
+      </div>
+      <div class="m-body">
+        <div class="m-left">
+          <span class="m-item muted label" style="--d:80ms">Contacto</span>
+          <h2 id="m-title"><span class="w mw"><span style="--d:120ms">Hablemos</span></span> <span class="w mw"><span style="--d:190ms">de</span></span> <span class="w mw"><span style="--d:260ms">tu</span></span> <span class="w mw"><span style="--d:330ms">proyecto.</span></span></h2>
+          <p class="m-item muted m-lead" style="--d:420ms">Cuéntame qué necesitas y te respondo personalmente.</p>
+          <div class="m-item m-contact" style="--d:500ms">
+            <a href="mailto:hello@aandresdev.com" class="link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 6h18v12H3zM3 7l9 6 9-6"/></svg>hello@aandresdev.com</a>
+            <span class="muted"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-6-7-11a7 7 0 0 1 14 0c0 5-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>Lima, Perú</span>
+            <span class="m-socials"><a href="https://www.linkedin.com/in/andresgodinezv/" target="_blank" rel="noopener" class="link">LinkedIn</a><a href="https://www.instagram.com/aandresdev/" target="_blank" rel="noopener" class="link">Instagram</a><a href="https://www.tiktok.com/@aandresdev" target="_blank" rel="noopener" class="link">TikTok</a></span>
+          </div>
+        </div>
+        <div class="m-item m-card" style="--d:220ms">
+          <form id="form" novalidate>
+            <div class="row2">
+              <div class="m-item fld" style="--d:380ms"><label for="f-name">Nombre</label><input class="field" id="f-name" name="name" type="text" placeholder="Tu nombre" autocomplete="name"></div>
+              <div class="m-item fld" style="--d:440ms"><label for="f-email">Correo</label><input class="field" id="f-email" name="email" type="email" placeholder="tu@correo.com" autocomplete="email"></div>
+            </div>
+            <div class="m-item fld" style="--d:500ms"><label for="f-company">Empresa (opcional)</label><input class="field" id="f-company" name="company" type="text" placeholder="Nombre de tu negocio" autocomplete="organization"></div>
+            <fieldset class="m-item" style="--d:560ms">
+              <legend>¿Qué necesitas?</legend>
+              <div class="opts" id="opts">
+                <button type="button" class="opt" aria-pressed="true">Web o landing</button>
+                <button type="button" class="opt" aria-pressed="false">App móvil</button>
+                <button type="button" class="opt" aria-pressed="false">Automatización con IA</button>
+                <button type="button" class="opt" aria-pressed="false">Producto SaaS</button>
+                <button type="button" class="opt" aria-pressed="false">Otro</button>
+              </div>
+            </fieldset>
+            <div class="m-item fld" style="--d:620ms"><label for="f-msg">Mensaje</label><textarea class="field" id="f-msg" name="msg" rows="4" placeholder="Cuéntame sobre tu proyecto, plazos y lo que tienes en mente"></textarea></div>
+            <p class="err" id="err" role="alert" hidden>Escribe tu nombre y un correo válido.</p>
+            <button type="submit" class="btn btn-primary btn-block m-item" style="--d:680ms">Enviar mensaje <svg class="ar" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+          </form>
+          <div class="sent" id="sent" hidden>
+            <span class="pop check-wrap"><svg class="check" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg></span>
+            <h3 class="a-up" style="--d:250ms">¡Mensaje listo, <span id="sent-name"></span>!</h3>
+            <p class="a-up muted" style="--d:350ms">Se abrió tu correo con el mensaje armado. Envíalo y te respondo pronto.</p>
+            <div class="a-up sent-actions" style="--d:450ms">
+              <button type="button" class="btn btn-primary" id="sent-close">Cerrar</button>
+              <button type="button" class="btn btn-ghost" id="sent-reset">Enviar otro</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="/main.js"></script>
+<script>
+(function () {
+  var KEY = 'andres_recursos_subscribed', RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  var content = document.getElementById('rs-content'), gate = document.getElementById('gate');
+  function subscribed() { try { return localStorage.getItem(KEY) === '1'; } catch (e) { return false; } }
+  if (gate && content) {
+    if (subscribed()) { gate.hidden = true; content.hidden = false; }
+    else { gate.hidden = false; content.hidden = true; }
+    var input = document.getElementById('gate-email'), btn = document.getElementById('gate-submit'), err = document.getElementById('gate-err');
+    function submit(e) {
+      if (e) e.preventDefault();
+      var email = input.value.trim();
+      if (!RE.test(email)) { err.textContent = 'Ese correo no parece válido.'; err.hidden = false; return; }
+      try { localStorage.setItem(KEY, '1'); localStorage.setItem('andres_recursos_email', email); } catch (x) {}
+      try { fetch('https://primary-production-b62f1.up.railway.app/webhook/newsletter-notion', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ email: email, slug: gate.dataset.slug || '' }), keepalive: true }).catch(function () {}); } catch (x) {}
+      gate.hidden = true; content.hidden = false;
+    }
+    document.getElementById('gate-form').addEventListener('submit', submit);
+  }
+  document.querySelectorAll('.code-copy').forEach(function (b) {
+    b.addEventListener('click', function () {
+      var t = b.parentNode.querySelector('code').innerText;
+      var done = function () { b.textContent = 'Copiado'; setTimeout(function () { b.textContent = 'Copiar'; }, 1600); };
+      if (navigator.clipboard) navigator.clipboard.writeText(t).then(done, function () {}); else done();
+    });
+  });
+})();
+</script>
+</body>
+</html>

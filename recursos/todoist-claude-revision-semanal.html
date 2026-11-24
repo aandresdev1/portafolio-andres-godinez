@@ -1,0 +1,300 @@
+<!doctype html>
+<html lang="es" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Todoist + Claude: organiza tu semana con IA — Andres Godínez</title>
+<meta name="description" content="Claude revisa lo que avanzaste, te da retroalimentación y escribe tus tareas de la semana en Todoist.">
+<meta property="og:title" content="Todoist + Claude: organiza tu semana con IA — Andres Godínez">
+<meta property="og:description" content="Claude revisa lo que avanzaste, te da retroalimentación y escribe tus tareas de la semana en Todoist.">
+<meta property="og:image" content="/assets/andres.jpg">
+<meta name="theme-color" content="#0A0A0A">
+<link rel="icon" type="image/png" sizes="64x64" href="/assets/favicon.png">
+<link rel="icon" type="image/png" sizes="512x512" href="/assets/icon-512.png">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+<script>
+  try { var t = localStorage.getItem('theme'); if (t) document.documentElement.dataset.theme = t; } catch (e) {}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Sora:wght@700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+<div class="col">
+  <header class="nav a-down">
+    <a href="/" class="brand">Andres Godínez</a>
+    <nav aria-label="Principal">
+      <div class="nav-links" id="nav-links">
+      <a href="/#sobre-mi" class="link">Sobre mí</a>
+      <a href="/#proyectos" class="link">Proyectos</a>
+      <a href="/recursos" class="link">Recursos</a>
+      <button type="button" class="link link-btn" data-open>Contacto</button>
+        <div class="nav-social"><a href="https://www.instagram.com/aandresdev/" target="_blank" rel="noopener" aria-label="Instagram"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><path d="M17.5 6.5h.01"/></svg></a><a href="https://www.linkedin.com/in/andresgodinezv/" target="_blank" rel="noopener" aria-label="LinkedIn"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M8 10v7M8 7v.01M12 17v-7M12 13.5a2.5 2.5 0 0 1 5 0V17"/></svg></a><a href="https://www.tiktok.com/@aandresdev" target="_blank" rel="noopener" aria-label="TikTok"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3c.4 2.4 2 4 4.5 4.3v3c-1.7 0-3.2-.5-4.5-1.4V15a5.5 5.5 0 1 1-5.5-5.5v3A2.5 2.5 0 1 0 11 15V3z"/></svg></a></div>
+      </div>
+      <button type="button" class="toggle" id="toggle" aria-label="Cambiar tema">
+        <svg class="i-sun" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+        <svg class="i-moon" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/></svg>
+      </button>
+      <button type="button" class="burger" id="burger" aria-label="Abrir menú" aria-expanded="false" aria-controls="nav-links"><span></span><span></span><span></span></button>
+    </nav>
+  </header>
+
+  <main class="pj rs">
+    <a href="/recursos" class="back link a-up" style="--d:0ms"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M11 6l-6 6 6 6"/></svg> Recursos</a>
+    <span class="label a-up" style="--d:100ms">Guía · 27 jul. 2026 · <a class="link" href="https://www.tiktok.com/@aandresdev" target="_blank" rel="noopener">Ver en TikTok</a></span>
+    <h1 class="a-up" style="--d:180ms">Todoist + Claude: organiza tu semana con IA</h1>
+    <p class="lead a-up" style="--d:260ms">Claude revisa lo que avanzaste, te da retroalimentación y escribe tus tareas de la semana en Todoist.</p>
+    <section class="gate a-up" id="gate" data-slug="todoist-claude-revision-semanal" hidden style="--d:340ms">
+      <div class="gate-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="1.5"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg></div>
+      <p class="gate-eyebrow">Contenido exclusivo</p>
+      <h2 class="gate-title">Suscríbete para ver este recurso</h2>
+      <p class="gate-text">Déjame tu correo y te desbloqueo el material completo. También te llegan los recursos nuevos.</p>
+      <form class="gate-form" id="gate-form" novalidate>
+        <input type="email" id="gate-email" class="gate-input" placeholder="tu@correo.com" autocomplete="email" required>
+        <button type="submit" class="btn btn-primary">Suscribirme</button>
+      </form>
+      <p class="gate-err" id="gate-err" hidden></p>
+      <p class="gate-fine">Sin spam. Cancela cuando quieras.</p>
+    </section>
+    <article class="rs-md a-up" id="rs-content" style="--d:340ms" hidden>
+<p>Al terminar vas a tener un sistema donde tú solo capturas ideas, y cada fin de semana Claude revisa lo que avanzaste, te da retroalimentación y escribe las tareas de la semana siguiente directamente en tu Todoist — siempre alineadas a tus metas del trimestre.</p>
+<p>Configurarlo toma unos 20 minutos. Después son 10 minutos por semana.</p>
+<p><strong>Lo que necesitas:</strong> una cuenta de Todoist (la gratuita alcanza), una cuenta de Claude con acceso a Proyectos y conectores, y tus metas del trimestre aunque sea en borrador.</p>
+<h2>1. Todo en un solo lugar</h2>
+<p>La base es que todo lo que tengas que hacer viva en un solo lugar. Manda cada idea al <strong>Inbox</strong> de Todoist apenas se te ocurra, sin detenerte a elegir proyecto, fecha ni prioridad — eso mata el hábito. La captura tiene que costar menos de cinco segundos.</p>
+<blockquote>
+<p>Si la mitad de tus pendientes siguen en tu cabeza, Claude no puede ayudarte con lo que no ve.</p>
+</blockquote>
+<p>Agrupa después en pocas categorías por <strong>área de vida</strong>, no por tema:</p>
+<ul>
+<li>Negocio</li>
+<li>Trabajo</li>
+<li>Vida personal</li>
+</ul>
+<p>Puedes agregar más, pero resiste la tentación de crear quince. Con demasiadas categorías vas a dudar dónde va cada cosa, y esa duda es la que hace que dejes de capturar. Dentro de cada proyecto, usa secciones para separar lo recurrente de lo puntual.</p>
+<p><strong>Antes de seguir:</strong> dedica 20 minutos a vaciar la cabeza. Escribe absolutamente todo lo pendiente que se te ocurra, sin filtrar. Ese volcado inicial es lo que le da contexto real a Claude desde el primer día.</p>
+<h2>2. Conectar Claude con Todoist</h2>
+<p>Se hace una sola vez:</p>
+<ol>
+<li>Entra a <strong>Configuración → Conectores</strong></li>
+<li>Haz clic en <strong>Explorar conectores</strong></li>
+<li>Busca <strong>Todoist</strong> y haz clic en <strong>Conectar</strong></li>
+<li>Inicia sesión en Todoist y autoriza el acceso</li>
+</ol>
+<p>Desde ahí Claude puede leer tus tareas, crearlas, reprogramarlas y completarlas.</p>
+<p>Al principio te va a pedir permiso cada vez que use una herramienta del conector — déjalo así hasta que le tengas confianza. Cuando ya sepas qué hace, en la página del conector puedes marcar herramientas específicas como permitidas siempre.</p>
+<p>Para comprobar que funciona, abre un chat nuevo y escribe:</p>
+<div class="code"><button type="button" class="code-copy">Copiar</button><pre><code>¿Qué tareas tengo pendientes esta semana en Todoist?
+</code></pre></div>
+<p>Si te responde con tu lista real, ya está.</p>
+<h2>3. Armar el Proyecto en Claude</h2>
+<p>Un chat suelto no sabe quién eres ni hacia dónde vas, así que cada semana tendrías que explicárselo de nuevo. Un Proyecto guarda ese contexto de forma permanente.</p>
+<p>Crea un Proyecto en Claude con instrucciones personalizadas. Ahí van tres bloques:</p>
+<ul>
+<li><strong>Cómo funciona tu semana real</strong> con las horas que de verdad tienes</li>
+<li><strong>La rutina de supervisión</strong> que quieres seguir</li>
+<li><strong>Tus metas del trimestre</strong> con número y fecha</li>
+</ul>
+<p>Sin ese último bloque el sistema se cae, porque es lo que hace que Claude priorice según lo que importa y no según lo que grita más fuerte.</p>
+<h3>El prompt de instrucciones</h3>
+<p>Copia esto en las instrucciones del Proyecto y reemplaza lo que está entre corchetes:</p>
+<div class="code"><button type="button" class="code-copy">Copiar</button><pre><code>Eres mi asistente de productividad. Me ayudas a mantener el foco en mis
+metas trimestrales y a decidir en qué trabajar cada semana.
+
+## Sobre mí
+[Tu nombre, a qué te dedicas, en qué estás trabajando ahora]
+
+## Mi disponibilidad real
+- Horas útiles por semana para proyectos propios: [número]
+- Días o bloques ocupados: [ej. martes y jueves por la noche]
+- Mi mejor franja para trabajo profundo: [ej. mañanas antes de las 10]
+
+## Mis metas de este trimestre
+1. [Meta 1, con número y fecha. Ej: cerrar 3 clientes nuevos antes del
+   30 de septiembre]
+2. [Meta 2]
+3. [Meta 3]
+
+Máximo tres. Si tengo más, no son metas: son deseos.
+
+## Cómo quiero la revisión semanal
+Cuando te escriba &quot;revisión semanal&quot;, haz esto en orden:
+
+1. Consulta mis tareas completadas de los últimos 7 días en Todoist
+2. Consulta mis tareas pendientes y vencidas
+3. Dime en dos o tres líneas qué avancé de verdad, ligándolo a cuál meta
+   trimestral movió cada cosa
+4. Señálame qué quedó sin avanzar y pregúntame por qué. No asumas la
+   razón.
+5. Dame retroalimentación honesta. Si una meta lleva dos semanas sin
+   movimiento, dímelo directo. Si me estoy ocupando en cosas que no
+   apuntan a ninguna meta, dímelo también.
+6. Propón las tareas de la semana que entra, ordenadas por prioridad y
+   marcando a qué meta sirve cada una
+7. Espera mi confirmación antes de escribir nada en Todoist
+
+## Reglas
+- Nunca crees, modifiques ni completes tareas en Todoist sin que yo
+  confirme primero
+- Propón como máximo [número] tareas por semana. Prefiero pocas y
+  cumplidas que muchas y arrastradas.
+- Toda tarea debe empezar con un verbo y ser terminable en una sola
+  sesión. Si no cabe en una sesión, pártela.
+- Asigna cada tarea al proyecto correcto de Todoist: [lista tus
+  proyectos]
+- Si una tarea no sirve a ninguna meta trimestral, dímelo y pregúntame
+  si de verdad vale la pena
+- Sé directo. No me felicites por semanas flojas.
+</code></pre></div>
+<p>Ese último punto importa más de lo que parece. Si no lo pones, vas a recibir ánimo en vez de retroalimentación — y el ánimo no te mueve las metas.</p>
+<h2>4. La revisión semanal</h2>
+<p>Elige un día fijo. Domingo por la tarde funciona bien porque cierras la semana y ordenas la siguiente en la misma sesión. Abre el Proyecto y escribe <strong>"revisión semanal"</strong>. Claude:</p>
+<ul>
+<li>Lee tu Todoist</li>
+<li>Te dice qué avanzaste ligándolo a cada meta</li>
+<li>Señala qué quedó parado y te pregunta por qué</li>
+</ul>
+<p>A partir de ahí es una conversación, no un reporte. Cuando te pregunte por qué algo no avanzó, responde con la verdad: "no me alcanzó el tiempo" y "se me hizo cuesta arriba empezar" llevan a soluciones distintas. Si mientes acá, el sistema entero se vuelve decorativo.</p>
+<p>Discútele las prioridades. Si propone diez tareas y sabes que haces seis, pídele que corte cuatro y te diga cuáles sacrificar. <strong>Elegir qué no hacer es la mitad del ejercicio.</strong></p>
+<h2>5. Reprogramar la semana</h2>
+<p>Cuando confirmas, Claude reprioriza y crea las tareas de la semana directamente en Todoist. Si tienes activada la aprobación por herramienta, te va a pedir permiso — acéptalo.</p>
+<p>Abre Todoist y revisa que todo haya caído donde debía, sobre todo las primeras semanas. Es rápido y te ahorra encontrarte el lunes con tareas en el proyecto equivocado.</p>
+<h3>La rutina, en resumen</h3>
+<table>
+<thead>
+<tr>
+<th>Cuándo</th>
+<th>Qué haces</th>
+<th>Cuánto toma</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Cada día</td>
+<td>Capturas en el Inbox de Todoist</td>
+<td>5 segundos por idea</td>
+</tr>
+<tr>
+<td>Domingo</td>
+<td>Escribes "revisión semanal" en el Proyecto</td>
+<td>10 minutos</td>
+</tr>
+<tr>
+<td>Domingo</td>
+<td>Discutes prioridades y confirmas</td>
+<td>5 minutos</td>
+</tr>
+<tr>
+<td>Inicio de trimestre</td>
+<td>Actualizas las metas en las instrucciones</td>
+<td>20 minutos</td>
+</tr>
+</tbody>
+</table>
+<h3>Errores comunes que rompen el sistema</h3>
+<ul>
+<li><strong>Metas vagas sin número ni fecha.</strong> "Crecer mi negocio" no le sirve a nadie; "facturar S/6,000 mensuales para el 30 de septiembre" sí.</li>
+<li><strong>No actualizarlas al cambiar de trimestre.</strong> Un sistema que optimiza hacia metas vencidas es peor que no tener sistema.</li>
+<li><strong>Aceptar todo lo que propone sin discutir.</strong> No es tu jefe. El valor está en la conversación, no en la obediencia.</li>
+<li><strong>Sobrecargar la semana</strong> hasta que el sistema se sienta como una deuda. Empieza corto.</li>
+<li><strong>Dejar de capturar.</strong> Si el Inbox se queda vacío una semana, no es que no tuviste pendientes: es que volviste a guardarlos en la cabeza.</li>
+</ul>
+<p>No se trata de que hagas más cosas. Es que cada domingo sabes exactamente dónde estás parado respecto a lo que te importa, y empiezas el lunes sin la pregunta de "¿por dónde arranco?".</p>
+      <h2>Qué incluye</h2>
+      <ul><li>Método completo en 5 pasos</li><li>Cómo conectar Claude con Todoist</li><li>El prompt de instrucciones del Proyecto</li></ul>
+    </article>
+  </main>
+
+  <footer class="footer reveal">
+    <span>© 2026 Andres Godínez</span>
+    <span class="footer-links"><a href="mailto:hello@aandresdev.com" class="link">hello@aandresdev.com</a><a href="https://www.linkedin.com/in/andresgodinezv/" target="_blank" rel="noopener" class="link soc" aria-label="LinkedIn"><svg class="fi" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M8 10v7M8 7v.01M12 17v-7M12 13.5a2.5 2.5 0 0 1 5 0V17"/></svg><span class="ft">LinkedIn</span></a><a href="https://www.instagram.com/aandresdev/" target="_blank" rel="noopener" class="link soc" aria-label="Instagram"><svg class="fi" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><path d="M17.5 6.5h.01"/></svg><span class="ft">Instagram</span></a><a href="https://www.tiktok.com/@aandresdev" target="_blank" rel="noopener" class="link soc" aria-label="TikTok"><svg class="fi" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3c.4 2.4 2 4 4.5 4.3v3c-1.7 0-3.2-.5-4.5-1.4V15a5.5 5.5 0 1 1-5.5-5.5v3A2.5 2.5 0 1 0 11 15V3z"/></svg><span class="ft">TikTok</span></a></span>
+  </footer>
+</div>
+
+<!-- Popup de contacto -->
+<div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="m-title" hidden>
+  <div class="m-panel">
+    <div class="m-inner">
+      <div class="m-top">
+        <span class="m-item brand" style="--d:0ms">Andres Godínez</span>
+        <button type="button" class="m-item x" id="close" aria-label="Cerrar formulario" style="--d:60ms"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
+      </div>
+      <div class="m-body">
+        <div class="m-left">
+          <span class="m-item muted label" style="--d:80ms">Contacto</span>
+          <h2 id="m-title"><span class="w mw"><span style="--d:120ms">Hablemos</span></span> <span class="w mw"><span style="--d:190ms">de</span></span> <span class="w mw"><span style="--d:260ms">tu</span></span> <span class="w mw"><span style="--d:330ms">proyecto.</span></span></h2>
+          <p class="m-item muted m-lead" style="--d:420ms">Cuéntame qué necesitas y te respondo personalmente.</p>
+          <div class="m-item m-contact" style="--d:500ms">
+            <a href="mailto:hello@aandresdev.com" class="link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 6h18v12H3zM3 7l9 6 9-6"/></svg>hello@aandresdev.com</a>
+            <span class="muted"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-6-7-11a7 7 0 0 1 14 0c0 5-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>Lima, Perú</span>
+            <span class="m-socials"><a href="https://www.linkedin.com/in/andresgodinezv/" target="_blank" rel="noopener" class="link">LinkedIn</a><a href="https://www.instagram.com/aandresdev/" target="_blank" rel="noopener" class="link">Instagram</a><a href="https://www.tiktok.com/@aandresdev" target="_blank" rel="noopener" class="link">TikTok</a></span>
+          </div>
+        </div>
+        <div class="m-item m-card" style="--d:220ms">
+          <form id="form" novalidate>
+            <div class="row2">
+              <div class="m-item fld" style="--d:380ms"><label for="f-name">Nombre</label><input class="field" id="f-name" name="name" type="text" placeholder="Tu nombre" autocomplete="name"></div>
+              <div class="m-item fld" style="--d:440ms"><label for="f-email">Correo</label><input class="field" id="f-email" name="email" type="email" placeholder="tu@correo.com" autocomplete="email"></div>
+            </div>
+            <div class="m-item fld" style="--d:500ms"><label for="f-company">Empresa (opcional)</label><input class="field" id="f-company" name="company" type="text" placeholder="Nombre de tu negocio" autocomplete="organization"></div>
+            <fieldset class="m-item" style="--d:560ms">
+              <legend>¿Qué necesitas?</legend>
+              <div class="opts" id="opts">
+                <button type="button" class="opt" aria-pressed="true">Web o landing</button>
+                <button type="button" class="opt" aria-pressed="false">App móvil</button>
+                <button type="button" class="opt" aria-pressed="false">Automatización con IA</button>
+                <button type="button" class="opt" aria-pressed="false">Producto SaaS</button>
+                <button type="button" class="opt" aria-pressed="false">Otro</button>
+              </div>
+            </fieldset>
+            <div class="m-item fld" style="--d:620ms"><label for="f-msg">Mensaje</label><textarea class="field" id="f-msg" name="msg" rows="4" placeholder="Cuéntame sobre tu proyecto, plazos y lo que tienes en mente"></textarea></div>
+            <p class="err" id="err" role="alert" hidden>Escribe tu nombre y un correo válido.</p>
+            <button type="submit" class="btn btn-primary btn-block m-item" style="--d:680ms">Enviar mensaje <svg class="ar" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+          </form>
+          <div class="sent" id="sent" hidden>
+            <span class="pop check-wrap"><svg class="check" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg></span>
+            <h3 class="a-up" style="--d:250ms">¡Mensaje listo, <span id="sent-name"></span>!</h3>
+            <p class="a-up muted" style="--d:350ms">Se abrió tu correo con el mensaje armado. Envíalo y te respondo pronto.</p>
+            <div class="a-up sent-actions" style="--d:450ms">
+              <button type="button" class="btn btn-primary" id="sent-close">Cerrar</button>
+              <button type="button" class="btn btn-ghost" id="sent-reset">Enviar otro</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="/main.js"></script>
+<script>
+(function () {
+  var KEY = 'andres_recursos_subscribed', RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  var content = document.getElementById('rs-content'), gate = document.getElementById('gate');
+  function subscribed() { try { return localStorage.getItem(KEY) === '1'; } catch (e) { return false; } }
+  if (gate && content) {
+    if (subscribed()) { gate.hidden = true; content.hidden = false; }
+    else { gate.hidden = false; content.hidden = true; }
+    var input = document.getElementById('gate-email'), btn = document.getElementById('gate-submit'), err = document.getElementById('gate-err');
+    function submit(e) {
+      if (e) e.preventDefault();
+      var email = input.value.trim();
+      if (!RE.test(email)) { err.textContent = 'Ese correo no parece válido.'; err.hidden = false; return; }
+      try { localStorage.setItem(KEY, '1'); localStorage.setItem('andres_recursos_email', email); } catch (x) {}
+      try { fetch('https://primary-production-b62f1.up.railway.app/webhook/newsletter-notion', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ email: email, slug: gate.dataset.slug || '' }), keepalive: true }).catch(function () {}); } catch (x) {}
+      gate.hidden = true; content.hidden = false;
+    }
+    document.getElementById('gate-form').addEventListener('submit', submit);
+  }
+  document.querySelectorAll('.code-copy').forEach(function (b) {
+    b.addEventListener('click', function () {
+      var t = b.parentNode.querySelector('code').innerText;
+      var done = function () { b.textContent = 'Copiado'; setTimeout(function () { b.textContent = 'Copiar'; }, 1600); };
+      if (navigator.clipboard) navigator.clipboard.writeText(t).then(done, function () {}); else done();
+    });
+  });
+})();
+</script>
+</body>
+</html>
