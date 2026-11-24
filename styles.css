@@ -206,3 +206,20 @@ textarea.field { height: auto; padding: 14px 16px; line-height: 1.5; resize: ver
   .nav-links.open .link:nth-child(2) { animation-delay: 50ms; }
   .nav-links.open .link:nth-child(3) { animation-delay: 100ms; }
 }
+
+/* Redes en móvil */
+.nav-social { display: none; }
+.footer .fi { display: none; }
+.footer .soc { display: inline-flex; align-items: center; gap: 6px; }
+@media (max-width: 640px) {
+  .nav-social { display: flex; gap: 8px; padding: 10px 6px 4px; margin-top: 6px; border-top: 1px solid var(--border); }
+  .nav-social a { width: 44px; height: 44px; border-radius: 12px; display: flex; align-items: center; justify-content: center; background: var(--bg); border: 1px solid var(--border); transition: transform .2s ease; }
+  .nav-social a:active { transform: scale(.94); }
+  .nav-links.open .nav-social { animation: fadeUp .45s cubic-bezier(.2,.8,.2,1) 150ms both; }
+  .footer { flex-direction: column; align-items: flex-start; }
+  .footer-links { gap: 10px; align-items: center; }
+  .footer .soc { width: 44px; height: 44px; justify-content: center; border-radius: 12px; border: 1px solid var(--border); background: var(--card); opacity: 1 !important; }
+  .footer .soc::after { display: none; }
+  .footer .fi { display: block; }
+  .footer .ft { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+}
