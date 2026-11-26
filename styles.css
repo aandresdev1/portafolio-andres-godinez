@@ -282,11 +282,11 @@ textarea.field { height: auto; padding: 14px 16px; line-height: 1.5; resize: ver
 .gate-title { margin: 8px 0 0; font-size: 22px; letter-spacing: -0.02em; }
 .gate-text { margin: 10px auto 0; max-width: 420px; color: var(--muted); font-size: 15px; line-height: 1.6; }
 .gate-form { display: flex; gap: 10px; max-width: 440px; margin: 22px auto 0; }
-.gate-input { flex: 1; min-width: 0; height: 48px; padding: 0 16px; font: inherit; font-size: 15px; color: var(--fg); background: var(--bg); border: 1px solid var(--border); border-radius: 12px; outline: none; }
+.gate-input { flex: 1; min-width: 0; height: 48px; padding: 0 16px; font: inherit; font-size: 16px; line-height: normal; -webkit-appearance: none; appearance: none; box-shadow: none; background-clip: padding-box; color: var(--fg); background: var(--bg); border: 1px solid var(--border); border-radius: 12px; outline: none; }
 .gate-input:focus { border-color: var(--fg); }
 .gate-err { margin: 10px 0 0; color: var(--err); font-size: 14px; }
 .gate-fine { margin: 12px 0 0; font-size: 13px; color: var(--muted); }
-@media (max-width: 520px) { .gate-form { flex-direction: column; } .gate { padding: 28px 18px; } }
+@media (max-width: 520px) { .gate-form { flex-direction: column; } .gate-input { flex: none; width: 100%; } .gate-form .btn { width: 100%; height: 48px; justify-content: center; } .gate { padding: 28px 18px; } }
 
 /* Recursos con imagen */
 .res { grid-template-columns: 112px 1fr; align-items: center; column-gap: 20px; }
